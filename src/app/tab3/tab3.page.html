@@ -1,0 +1,43 @@
+    <ion-header>
+  <ion-toolbar color="danger">
+    <ion-title> <b>Kumpulan Data Anggota</b></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content
+    pullingIcon="arrow-dropdown"
+    pullingText="Pull to refresh"
+    refreshingSpinner="circles"
+    refreshingText="Refreshing...">
+  </ion-refresher-content>
+</ion-refresher>
+
+<ion-card *ngFor="let anggotaa of anggotaas">
+  <ion-card color="warning">
+  <ion-card-header>
+    <ion-card-title>{{anggotaa.nama_anggota}}</ion-card-title>
+    <ion-card-subtitle>ID: {{anggotaa.id}}, Jenis Kelamin: {{anggotaa.jk_anggotaa}}</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content> 
+    Jurusan: {{anggotaa.jurusan}},
+    Judul Buku: {{anggotaa.judul_buku}},
+    Tanggal Pinjam: {{anggotaa.tgl_pinjam}}
+    Tanggal Kembali: {{anggotaa.tgl_kembali}}
+  </ion-card-content>
+
+  <ion-card-content>
+    No HP/WA: {{anggotaa.no_telpon}},
+    Email: {{anggotaa.email}},
+  </ion-card-content>
+  </ion-card>
+
+
+<ion-infinite-scroll  (ionInfinite)="loadData($event)">
+  <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Loading more data...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
